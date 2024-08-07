@@ -6,9 +6,17 @@ POST {{baseUrl}}/books
 Content-Type: {{contenType}}
 
 {
-    "title": "O Senhor dos Anéis",
-    "subtitle": "A Sociedade do Anel",
-    "author": "J.R.R. Tolkien",
-    "genre": "Fantasia",
-    "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113631_79a81e4f-07c1-4aa8-ba58-b44033442bbf.jpg"
-    }
+  "title": "O Senhor dos Anéis",
+  "subtitle": "A Sociedade do Anel",
+  "author": "J.R.R. Tolkien",
+  "genre": "Fantasia",
+  "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113631_79a81e4f-07c1-4aa8-ba58-b44033442bbf.jpg"
+}
+
+###
+GET {{baseUrl}}/books
+Content-Type: {{contenType}}
+
+###
+GET {{baseUrl}}/books/66b39cc014aad28835d656ff
+Content-Type: {{contenType}}
