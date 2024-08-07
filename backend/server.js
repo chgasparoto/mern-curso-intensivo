@@ -81,6 +81,29 @@ app.put("/api/v1/books/:id", async (req, res) => {
   }
 });
 
+app.delete("/api/v1/books/:id", async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ success: false, error: "Invalid ID" });
+  }
+
+  try {
+    const book = await Book.findById(id);
+
+    if (!book) {
+      return res.status(404).json({ success: false, error: "Book not found" });
+    }
+
+    await Book.findByIdAndDelete(id);
+
+    res.status(200).json({ success: true, data: {} });
+  } catch (error) {
+    console.error("Error deleting book: ", error);
+    res.status(500).json({ success: false, error: "Error deleting book" });
+  }
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
   connectToDatabase();

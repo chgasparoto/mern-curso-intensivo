@@ -29,3 +29,7 @@ Content-Type: {{contenType}}
   "subtitle": "As Duas Torres",
   "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113624_84e92bc9-fe5b-4d2c-9c79-5d2153540499.jpg"
 }
+
+###
+DELETE {{baseUrl}}/books/66b39cc014aad28835d656ff
+Content-Type: {{contenType}}
