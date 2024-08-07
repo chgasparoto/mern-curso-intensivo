@@ -1,9 +1,12 @@
 import "dotenv/config";
 import express from "express";
-import connectToDatabase from "./config/db";
-import { Book } from "./model/book.model";
+
+import { connectToDatabase } from "./config/db.js";
+import { Book } from "./model/book.model.js";
 
 const app = express();
+
+app.use(express.json());
 
 app.post("/api/v1/books", async (req, res) => {
   const { title, subtitle, author, genre, cover } = req.body;
