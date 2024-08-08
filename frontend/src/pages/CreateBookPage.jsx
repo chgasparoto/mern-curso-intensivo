@@ -8,9 +8,23 @@ import {
   TextField,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+
 import { createBook } from "../lib/api";
 
 const CreateBookPage = () => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const bookCreateMutation = useMutation({
+    mutationFn: (data) => createBook(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["books"]);
+    },
+    onError: (error) => {
+      console.error("Error creating book: ", error);
+    },
+  });
   const {
     register,
     handleSubmit,
@@ -19,13 +33,9 @@ const CreateBookPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    try {
-      await createBook(data);
-      reset();
-    } catch (error) {
-      console.error("Error creating book: ", error);
-    }
+    bookCreateMutation.mutate(data);
+    reset();
+    navigate("/");
   };
 
   return (
@@ -40,7 +50,7 @@ const CreateBookPage = () => {
               margin="normal"
               {...register("title", {
                 required: "Campo obrigatório",
-                minLength: { value: 10, message: "Mínimo de 10 caracteres" },
+                minLength: { value: 3, message: "Mínimo de 3 caracteres" },
               })}
               error={!!errors.title}
               helperText={errors.title?.message}
@@ -50,7 +60,7 @@ const CreateBookPage = () => {
               fullWidth
               margin="normal"
               {...register("subtitle", {
-                minLength: { value: 10, message: "Mínimo de 10 caracteres" },
+                minLength: { value: 3, message: "Mínimo de 3 caracteres" },
               })}
               error={!!errors.subtitle}
               helperText={errors.subtitle?.message}
@@ -63,7 +73,7 @@ const CreateBookPage = () => {
               margin="normal"
               {...register("author", {
                 required: "Campo obrigatório",
-                minLength: { value: 10, message: "Mínimo de 10 caracteres" },
+                minLength: { value: 3, message: "Mínimo de 3 caracteres" },
               })}
               error={!!errors.author}
               helperText={errors.author?.message}
@@ -74,7 +84,7 @@ const CreateBookPage = () => {
               margin="normal"
               {...register("genre", {
                 required: "Campo obrigatório",
-                minLength: { value: 10, message: "Mínimo de 10 caracteres" },
+                minLength: { value: 3, message: "Mínimo de 3 caracteres" },
               })}
               error={!!errors.genre}
               helperText={errors.genre?.message}
@@ -97,7 +107,12 @@ const CreateBookPage = () => {
           </Box>
         </CardContent>
         <CardActions>
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            disabled={bookCreateMutation.isPending}
+          >
             Cadastrar
           </Button>
         </CardActions>

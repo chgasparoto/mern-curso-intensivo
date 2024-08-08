@@ -1,25 +1,28 @@
-import { useEffect, useState } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import BookCard from "./BookCard";
 import { getBooks } from "../lib/api";
+import { useQuery } from "@tanstack/react-query";
 
 const BookGrid = () => {
-  const [books, setBooks] = useState([]);
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["books"],
+    queryFn: getBooks,
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  });
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await getBooks();
-      setBooks(response);
-    };
+  if (isLoading) {
+    return <p>Carregando...</p>;
+  }
 
-    fetchBooks();
-  }, []);
+  if (isError) {
+    return <p>Ocorreu um erro ao carregar os livros</p>;
+  }
 
   return (
     <Grid container spacing={5}>
-      {books.length ? (
-        books.map((book) => <BookCard key={book._id} {...book} />)
+      {data.length ? (
+        data.map((book) => <BookCard key={book._id} {...book} />)
       ) : (
         <p>Não há livros cadastrados</p>
       )}

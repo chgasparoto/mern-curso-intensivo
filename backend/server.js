@@ -8,6 +8,10 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  setTimeout(next, 1500); // Add a 1,5 seconds delay
+});
+
 app.use("/api/v1/books", bookRouter);
 
 app.listen(3000, () => {

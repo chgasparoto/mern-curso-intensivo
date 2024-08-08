@@ -4,20 +4,40 @@
     "subtitle": "A Sociedade do Anel",
     "author": "J.R.R. Tolkien",
     "genre": "Fantasia",
-    "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113631_79a81e4f-07c1-4aa8-ba58-b44033442bbf.jpg"
+    "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113631_79a81e4f-07c1-4aa8-ba58-b44033442bbf.jpg?width=350"
   },
   {
     "title": "O Senhor dos Anéis",
     "subtitle": "As Duas Torres",
     "author": "J.R.R. Tolkien",
     "genre": "Fantasia",
-    "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113624_84e92bc9-fe5b-4d2c-9c79-5d2153540499.jpg"
+    "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113624_84e92bc9-fe5b-4d2c-9c79-5d2153540499.jpg?width=350"
   },
   {
     "title": "O Senhor dos Anéis",
     "subtitle": "O Retorno do Rei",
     "author": "J.R.R. Tolkien",
     "genre": "Fantasia",
-    "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113662_44bc4e0d-f1c5-4ae0-9df5-ae703095b13d.jpg"
+    "cover": "https://harpercollins.com.br/cdn/shop/products/9786555113662_44bc4e0d-f1c5-4ae0-9df5-ae703095b13d.jpg?width=350"
+  },
+  {
+    "title": "A psicologia financeira",
+    "subtitle": "Lições atemporais sobre fortuna, ganância e felicidade",
+    "author": "Morgan Housel (Roberta Clapp, Bruno Fiuza)",
+    "genre": "Finanças",
+    "cover": "https://harpercollins.com.br/cdn/shop/products/9786555111101.jpg?v=1691738175&width=350"
+  },
+  {
+    "title": "O homem mais rico da Babilônia",
+    "author": "George S. Clason (Luiz Cavalcanti de M. Guerra)",
+    "genre": "Finanças",
+    "cover": "https://harpercollins.com.br/cdn/shop/products/9788595081536.jpg?v=1691738217&width=350"
+  },
+  {
+    "title": "Do Mil Ao Milhão",
+    "subtitle": "Sem Cortar o Cafezinho",
+    "author": "Thiago Nigro",
+    "genre": "Finanças",
+    "cover": "https://harpercollins.com.br/cdn/shop/files/9788595083271_b418521e-d28b-41bf-881b-5d538b4bbc46.jpg?v=1721832628&width=350"
   }
 ]
