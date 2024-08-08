@@ -7,10 +7,32 @@ import PropTypes from "prop-types";
 import EditBookDialog from "./EditBookDialog";
 import { deleteBook, updateBook } from "../lib/api";
 import ConfirmDeleteDialog from "./ConfirmDeleteDialog";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const queryClient = useQueryClient();
+  const bookUpdateMutation = useMutation({
+    mutationKey: ["updateBook", id],
+    mutationFn: (data) => updateBook(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["books"]);
+    },
+    onError: (error) => {
+      console.error("Error creating book: ", error);
+    },
+  });
+  const bookDeleteMutation = useMutation({
+    mutationKey: ["deleteBook", id],
+    mutationFn: (bookId) => deleteBook(bookId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["books"]);
+    },
+    onError: (error) => {
+      console.error("Error creating book: ", error);
+    },
+  });
 
   const handleEditDialogOpen = () => {
     setEditDialogOpen(true);
@@ -21,12 +43,7 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
   };
 
   const handleEditSaveBook = async (data) => {
-    console.log(data);
-    try {
-      await updateBook(id, data);
-    } catch (error) {
-      console.error("Error updating book: ", error);
-    }
+    await bookUpdateMutation.mutateAsync(data);
     handleEditDialogClose();
   };
 
@@ -38,13 +55,8 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
     setDeleteDialogOpen(false);
   };
 
-  const handleDeleteBook = async (data) => {
-    console.log(data);
-    try {
-      await deleteBook(id);
-    } catch (error) {
-      console.error("Error updating book: ", error);
-    }
+  const handleDeleteBook = async () => {
+    await bookDeleteMutation.mutateAsync(id);
     handleDeleteDialogClose();
   };
 
