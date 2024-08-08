@@ -1,7 +1,7 @@
 import BookGrid from "../components/BookGrid";
 
-const Homepage = () => {
+const HomePage = () => {
   return <BookGrid />;
 };
 
-export default Homepage;
+export default HomePage;
