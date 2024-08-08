@@ -73,7 +73,8 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
             {...register("cover", {
               required: "Campo obrigatório",
               pattern: {
-                value: /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|bmp|tiff))$/i,
+                value:
+                  /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|bmp|tiff))(?:\?.*)?$/i,
                 message: "URL da imagem inválida",
               },
             })}
@@ -94,7 +95,7 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
 
 EditBookDialog.propTypes = {
   book: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,

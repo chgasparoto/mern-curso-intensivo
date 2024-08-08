@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
-import { Link } from "react-router-dom";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+
+import { useThemeContext } from "../hooks/useThemeContext";
 
 const NavBar = () => {
+  const { mode, setMode } = useThemeContext();
   return (
     <Box>
       <AppBar position="static">
@@ -30,8 +34,12 @@ const NavBar = () => {
           <IconButton component={Link} to="/create-book">
             <AddBoxIcon />
           </IconButton>
-          <IconButton>
-            <Brightness4Icon />
+          <IconButton
+            onClick={() =>
+              setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"))
+            }
+          >
+            {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Toolbar>
       </AppBar>

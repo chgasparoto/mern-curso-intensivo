@@ -59,7 +59,7 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
               width: "100%",
               objectFit: "cover",
               aspectRatio: "9/16",
-              boxShadow: 1,
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
             },
           }}
         >

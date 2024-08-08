@@ -87,7 +87,7 @@ const CreateBookPage = () => {
                 required: "Campo obrigatório",
                 pattern: {
                   value:
-                    /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|bmp|tiff))$/i,
+                    /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|bmp|tiff))(?:\?.*)?$/i,
                   message: "URL da imagem inválida",
                 },
               })}
