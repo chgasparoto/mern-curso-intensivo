@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Box, IconButton, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
+import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 import PropTypes from "prop-types";
-import ConfirmDeleteDialog from "./ConfirmDeleteDialog";
 
+import ConfirmDeleteDialog from "./ConfirmDeleteDialog";
 import EditBookDialog from "./EditBookDialog";
 import { useDeleteBook, useUpdateBook } from "../lib/mutations";
 import { useSnackbarContext } from "../hooks/useSnackbarContext";
@@ -96,10 +96,10 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
           }}
         >
           <IconButton onClick={handleEditDialogOpen}>
-            <EditIcon />
+            <EditTwoToneIcon />
           </IconButton>
           <IconButton onClick={handleDeleteDialogOpen}>
-            <DeleteIcon />
+            <DeleteTwoToneIcon />
           </IconButton>
         </Box>
       </Paper>
