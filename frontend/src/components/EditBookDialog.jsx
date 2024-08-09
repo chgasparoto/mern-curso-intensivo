@@ -11,7 +11,7 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       title: book.title,
@@ -37,6 +37,7 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
             })}
             error={!!errors.title}
             helperText={errors.title?.message}
+            disabled={isSubmitting}
           />
 
           <TextField
@@ -48,6 +49,7 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
             })}
             error={!!errors.subtitle}
             helperText={errors.subtitle?.message}
+            disabled={isSubmitting}
           />
 
           <TextField
@@ -60,6 +62,7 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
             })}
             error={!!errors.author}
             helperText={errors.author?.message}
+            disabled={isSubmitting}
           />
           <TextField
             label="Gênero"
@@ -71,6 +74,7 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
             })}
             error={!!errors.genre}
             helperText={errors.genre?.message}
+            disabled={isSubmitting}
           />
           <TextField
             label="Imagem da Capa"
@@ -86,12 +90,20 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
             })}
             error={!!errors.cover}
             helperText={errors.cover?.message}
+            disabled={isSubmitting}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Cancelar</Button>
-          <Button variant="contained" color="primary" type="submit">
-            Salvar
+          <Button onClick={onClose} disabled={isSubmitting}>
+            Cancelar
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Salvando..." : "Salvar"}
           </Button>
         </DialogActions>
       </form>

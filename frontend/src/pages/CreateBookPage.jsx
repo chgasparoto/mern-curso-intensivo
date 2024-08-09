@@ -15,11 +15,11 @@ import { useSnackbarContext } from "../hooks/useSnackbarContext";
 
 const CreateBookPage = () => {
   const navigate = useNavigate();
-  const { mutateAsync, isPending } = useCreateBook();
+  const { mutateAsync } = useCreateBook();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm();
   const { showSnackbar } = useSnackbarContext();
@@ -52,6 +52,7 @@ const CreateBookPage = () => {
               })}
               error={!!errors.title}
               helperText={errors.title?.message}
+              disabled={isSubmitting}
             />
             <TextField
               label="SubTítulo"
@@ -62,6 +63,7 @@ const CreateBookPage = () => {
               })}
               error={!!errors.subtitle}
               helperText={errors.subtitle?.message}
+              disabled={isSubmitting}
             />
           </Box>
           <Box sx={{ display: "flex", gap: 2 }}>
@@ -75,6 +77,7 @@ const CreateBookPage = () => {
               })}
               error={!!errors.author}
               helperText={errors.author?.message}
+              disabled={isSubmitting}
             />
             <TextField
               label="Gênero"
@@ -86,6 +89,7 @@ const CreateBookPage = () => {
               })}
               error={!!errors.genre}
               helperText={errors.genre?.message}
+              disabled={isSubmitting}
             />
             <TextField
               label="Imagem da Capa"
@@ -101,6 +105,7 @@ const CreateBookPage = () => {
               })}
               error={!!errors.cover}
               helperText={errors.cover?.message}
+              disabled={isSubmitting}
             />
           </Box>
         </CardContent>
@@ -109,9 +114,9 @@ const CreateBookPage = () => {
             variant="contained"
             color="primary"
             type="submit"
-            disabled={isPending}
+            disabled={isSubmitting}
           >
-            {isPending ? "Salvando..." : "Salvar"}
+            {isSubmitting ? "Salvando..." : "Salvar"}
           </Button>
         </CardActions>
       </form>

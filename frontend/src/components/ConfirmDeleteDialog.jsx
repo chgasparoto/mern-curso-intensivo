@@ -6,7 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import PropTypes from "prop-types";
 import { DialogContentText } from "@mui/material";
 
-const ConfirmDeleteDialog = ({ open, onClose, onDelete }) => {
+const ConfirmDeleteDialog = ({ open, onClose, onDelete, isDeleting }) => {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm">
       <DialogTitle>Tem certeza que deseja excluir este item?</DialogTitle>
@@ -16,9 +16,16 @@ const ConfirmDeleteDialog = ({ open, onClose, onDelete }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancelar</Button>
-        <Button onClick={onDelete} variant="contained" color="error">
-          Deletar
+        <Button onClick={onClose} disabled={isDeleting}>
+          Cancelar
+        </Button>
+        <Button
+          onClick={onDelete}
+          variant="contained"
+          color="error"
+          disabled={isDeleting}
+        >
+          {isDeleting ? "Excluindo..." : "Excluir"}
         </Button>
       </DialogActions>
     </Dialog>
@@ -29,6 +36,7 @@ ConfirmDeleteDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  isDeleting: PropTypes.bool,
 };
 
 export default ConfirmDeleteDialog;

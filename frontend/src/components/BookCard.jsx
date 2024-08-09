@@ -13,6 +13,7 @@ import { useSnackbarContext } from "../hooks/useSnackbarContext";
 const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const bookUpdateMutation = useUpdateBook(id);
   const bookDeleteMutation = useDeleteBook(id);
   const { showSnackbar } = useSnackbarContext();
@@ -42,10 +43,12 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
 
   const handleDeleteDialogClose = () => {
     setDeleteDialogOpen(false);
+    setIsDeleting(false);
   };
 
   const handleDeleteBook = async () => {
     try {
+      setIsDeleting(true);
       await bookDeleteMutation.mutateAsync(id);
       showSnackbar("Livro deletado com sucesso", "success");
     } catch (error) {
@@ -110,6 +113,7 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
         open={deleteDialogOpen}
         onClose={handleDeleteDialogClose}
         onDelete={handleDeleteBook}
+        isDeleting={isDeleting}
       />
     </Grid>
   );
