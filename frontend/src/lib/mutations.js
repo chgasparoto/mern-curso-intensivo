@@ -6,24 +6,35 @@ export const useCreateBook = () => {
   return useMutation({
     mutationKey: ["createBook"],
     mutationFn: (data) => createBook(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["books"]);
+    onMutate: () => {
+      return queryClient.getQueryData(["books"]);
     },
-    onError: (error) => {
+    onSuccess: (data) => {
+      queryClient.setQueryData(["books"], (oldData) => [...oldData, data]);
+    },
+    onError: (error, _variables, context) => {
       console.error("Error creating book: ", error);
+      queryClient.setQueryData(["books"], context);
     },
   });
 };
+
 export const useUpdateBook = (id) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["updateBook", id],
     mutationFn: (data) => updateBook(id, data),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["books"]);
+    onMutate: () => {
+      return queryClient.getQueryData(["books"]);
     },
-    onError: (error) => {
+    onSuccess: (data) => {
+      queryClient.setQueryData(["books"], (oldData) => {
+        return oldData.map((book) => (book._id === id ? data : book));
+      });
+    },
+    onError: (error, _variables, context) => {
       console.error("Error creating book: ", error);
+      queryClient.setQueryData(["books"], context);
     },
   });
 };
@@ -33,11 +44,17 @@ export const useDeleteBook = (id) => {
   return useMutation({
     mutationKey: ["deleteBook", id],
     mutationFn: (bookId) => deleteBook(bookId),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["books"]);
+    onMutate: () => {
+      return queryClient.getQueryData(["books"]);
     },
-    onError: (error) => {
+    onSuccess: () => {
+      queryClient.setQueryData(["books"], (oldData) => {
+        return oldData.filter((book) => book._id !== id);
+      });
+    },
+    onError: (error, _variables, context) => {
       console.error("Error creating book: ", error);
+      queryClient.setQueryData(["books"], context);
     },
   });
 };
