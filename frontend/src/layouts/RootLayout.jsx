@@ -5,19 +5,22 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import NavBar from "../components/NavBar";
 import ThemeContextProvider from "../contexts/ThemeContext";
+import SnackbarContextProvider from "../contexts/SnackbarContext";
 
 const queryClient = new QueryClient();
 
 const RootLayout = () => {
   return (
     <ThemeContextProvider>
-      <QueryClientProvider client={queryClient}>
-        <NavBar />
-        <Container maxWidth="lg" sx={{ mt: 1 }}>
-          <Outlet />
-        </Container>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <SnackbarContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <NavBar />
+          <Container maxWidth="lg" sx={{ mt: 1 }}>
+            <Outlet />
+          </Container>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </SnackbarContextProvider>
     </ThemeContextProvider>
   );
 };

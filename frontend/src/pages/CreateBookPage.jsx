@@ -11,19 +11,27 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { useCreateBook } from "../lib/mutations";
+import { useSnackbarContext } from "../hooks/useSnackbarContext";
 
 const CreateBookPage = () => {
   const navigate = useNavigate();
-  const { mutate, isPending } = useCreateBook();
+  const { mutateAsync, isPending } = useCreateBook();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+  const { showSnackbar } = useSnackbarContext();
 
   const onSubmit = async (data) => {
-    mutate(data);
+    try {
+      await mutateAsync(data);
+      showSnackbar("Livro cadastrado com sucesso", "success");
+    } catch (error) {
+      console.error("Error saving book: ", error);
+      showSnackbar("Erro ao cadastrar o livro", "error");
+    }
     reset();
     navigate("/");
   };
@@ -103,7 +111,7 @@ const CreateBookPage = () => {
             type="submit"
             disabled={isPending}
           >
-            Cadastrar
+            {isPending ? "Salvando..." : "Salvar"}
           </Button>
         </CardActions>
       </form>

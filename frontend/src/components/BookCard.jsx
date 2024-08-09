@@ -8,12 +8,14 @@ import ConfirmDeleteDialog from "./ConfirmDeleteDialog";
 
 import EditBookDialog from "./EditBookDialog";
 import { useDeleteBook, useUpdateBook } from "../lib/mutations";
+import { useSnackbarContext } from "../hooks/useSnackbarContext";
 
 const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const bookUpdateMutation = useUpdateBook(id);
   const bookDeleteMutation = useDeleteBook(id);
+  const { showSnackbar } = useSnackbarContext();
 
   const handleEditDialogOpen = () => {
     setEditDialogOpen(true);
@@ -24,7 +26,13 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
   };
 
   const handleEditSaveBook = async (data) => {
-    await bookUpdateMutation.mutateAsync(data);
+    try {
+      await bookUpdateMutation.mutateAsync(data);
+      showSnackbar("Livro atualizado com sucesso", "success");
+    } catch (error) {
+      console.error("Error updating book: ", error);
+      showSnackbar("Erro ao atualizar o livro", "error");
+    }
     handleEditDialogClose();
   };
 
@@ -37,7 +45,13 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
   };
 
   const handleDeleteBook = async () => {
-    await bookDeleteMutation.mutateAsync(id);
+    try {
+      await bookDeleteMutation.mutateAsync(id);
+      showSnackbar("Livro deletado com sucesso", "success");
+    } catch (error) {
+      console.error("Error deleting book: ", error);
+      showSnackbar("Erro ao deletar o livro", "error");
+    }
     handleDeleteDialogClose();
   };
 
