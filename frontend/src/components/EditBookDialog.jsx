@@ -13,7 +13,13 @@ const EditBookDialog = ({ book, open, onClose, onSave }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: book,
+    defaultValues: {
+      title: book.title,
+      subtitle: book.subtitle || "",
+      author: book.author,
+      genre: book.genre,
+      cover: book.cover,
+    },
   });
 
   return (

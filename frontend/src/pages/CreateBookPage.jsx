@@ -8,23 +8,13 @@ import {
   TextField,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { createBook } from "../lib/api";
+import { useCreateBook } from "../lib/mutations";
 
 const CreateBookPage = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const bookCreateMutation = useMutation({
-    mutationFn: (data) => createBook(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["books"]);
-    },
-    onError: (error) => {
-      console.error("Error creating book: ", error);
-    },
-  });
+  const { mutate, isPending } = useCreateBook();
   const {
     register,
     handleSubmit,
@@ -33,7 +23,7 @@ const CreateBookPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    bookCreateMutation.mutate(data);
+    mutate(data);
     reset();
     navigate("/");
   };
@@ -111,7 +101,7 @@ const CreateBookPage = () => {
             variant="contained"
             color="primary"
             type="submit"
-            disabled={bookCreateMutation.isPending}
+            disabled={isPending}
           >
             Cadastrar
           </Button>

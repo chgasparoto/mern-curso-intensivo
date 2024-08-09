@@ -4,35 +4,16 @@ import Grid from "@mui/material/Unstable_Grid2";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PropTypes from "prop-types";
-import EditBookDialog from "./EditBookDialog";
-import { deleteBook, updateBook } from "../lib/api";
 import ConfirmDeleteDialog from "./ConfirmDeleteDialog";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import EditBookDialog from "./EditBookDialog";
+import { useDeleteBook, useUpdateBook } from "../lib/mutations";
 
 const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const queryClient = useQueryClient();
-  const bookUpdateMutation = useMutation({
-    mutationKey: ["updateBook", id],
-    mutationFn: (data) => updateBook(id, data),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["books"]);
-    },
-    onError: (error) => {
-      console.error("Error creating book: ", error);
-    },
-  });
-  const bookDeleteMutation = useMutation({
-    mutationKey: ["deleteBook", id],
-    mutationFn: (bookId) => deleteBook(bookId),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["books"]);
-    },
-    onError: (error) => {
-      console.error("Error creating book: ", error);
-    },
-  });
+  const bookUpdateMutation = useUpdateBook(id);
+  const bookDeleteMutation = useDeleteBook(id);
 
   const handleEditDialogOpen = () => {
     setEditDialogOpen(true);
