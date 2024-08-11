@@ -60,7 +60,7 @@ cd ..
 
 3. **Configure as Variáveis de Ambiente::**
 
-Crie um arquivo .env (ou renomeie ou copie/cole o arquivo .env-example para .env) com as seguintes variáveis:
+Crie um arquivo .env (ou renomeie ou copie/cole o arquivo [.env-example](.env-example) para .env) com as seguintes variáveis:
 
 ```bash
 MONGODB_URI=seu-mongodb-uri
