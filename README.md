@@ -45,8 +45,8 @@ A aplicação é implantada na AWS usando o AWS App Runner, que simplifica o pro
 1. **Clone o Repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/mern-bookshelf.git
-cd mern-bookshelf
+git clone https://github.com/chgasparoto/mern-curso-intensivo.git
+cd mern-curso-intensivo
 ```
 
 2. **Instale as Dependências:**
