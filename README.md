@@ -81,3 +81,36 @@ Abra http://localhost:3000 para ver a aplicação em ação.
 ## Licença
 
 Este projeto é licenciado sob a Licença **Creative Commons Attribution-NonCommercial 4.0 International Public License** - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## Links
+
+### Geral
+
+- [Repositório](https://github.com/chgasparoto/mern-curso-intensivo)
+
+### Backend
+
+- [Node.js e NPM](https://nodejs.org/pt)
+- [VSCode](https://code.visualstudio.com/)
+- [Git](https://git-scm.com/downloads)
+- [Express](https://www.npmjs.com/package/express)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://www.npmjs.com/package/mongoose)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+- [Nodemon](https://www.npmjs.com/package/nodemon)
+- [Zod](https://www.npmjs.com/package/zod)
+
+### Frontend
+
+- [Vite](https://vitejs.dev/guide/)
+- [React](https://react.dev/)
+- [Material UI](https://mui.com/material-ui/)
+- [React Router](https://reactrouter.com/en/main)
+- [React Hook Form](https://react-hook-form.com/)
+- [Tanstack React Query](https://tanstack.com/query/v5/docs/framework/react/overview)
+- [Axios](https://axios-http.com/)
+
+### Deployment
+
+- [AWS App Runner](https://aws.amazon.com/pt/apprunner/)
+- [Calculadora AWS](https://calculator.aws/#/createCalculator/apprunner)
