@@ -20,7 +20,7 @@ const BookGrid = () => {
   return (
     <Grid container spacing={5}>
       {isLoading ? (
-        <BookCardSkeleton count="4" />
+        <BookCardSkeleton count={4} />
       ) : data.length ? (
         data.map((book) => <BookCard key={book._id} {...book} />)
       ) : (
