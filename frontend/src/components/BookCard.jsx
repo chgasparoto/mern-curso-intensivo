@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
 import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
@@ -80,7 +80,7 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
             {title}
           </Typography>
           <Typography variant="body2" component="h4" noWrap>
-            {subtitle}
+            {subtitle ? subtitle : "\u00A0"}
           </Typography>
           <Typography variant="body2" component="p" noWrap>
             {author}
@@ -89,19 +89,14 @@ const BookCard = ({ _id: id, title, subtitle, author, genre, cover }) => {
             {genre}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
+        <Stack direction="row" justifyContent="flex-end">
           <IconButton onClick={handleEditDialogOpen}>
             <EditTwoToneIcon />
           </IconButton>
           <IconButton onClick={handleDeleteDialogOpen}>
             <DeleteTwoToneIcon />
           </IconButton>
-        </Box>
+        </Stack>
       </Paper>
       <EditBookDialog
         book={{ id, title, subtitle, author, genre, cover }}
