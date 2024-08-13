@@ -1,10 +1,10 @@
 import {
-  Box,
   Button,
   Card,
   CardActions,
   CardContent,
   CardHeader,
+  Stack,
   TextField,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -41,7 +41,13 @@ const CreateBookPage = () => {
       <CardHeader title="Cadastrar novo livro" />
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <CardContent>
-          <Box sx={{ display: "flex", gap: 2 }}>
+          <Stack
+            spacing={2}
+            direction={{
+              sm: "column",
+              md: "row",
+            }}
+          >
             <TextField
               label="Título"
               fullWidth
@@ -65,8 +71,15 @@ const CreateBookPage = () => {
               helperText={errors.subtitle?.message}
               disabled={isSubmitting}
             />
-          </Box>
-          <Box sx={{ display: "flex", gap: 2 }}>
+          </Stack>
+          <Stack
+            marginTop={{ sm: 2 }}
+            spacing={2}
+            direction={{
+              sm: "column",
+              md: "row",
+            }}
+          >
             <TextField
               label="Autor"
               fullWidth
@@ -91,23 +104,23 @@ const CreateBookPage = () => {
               helperText={errors.genre?.message}
               disabled={isSubmitting}
             />
-            <TextField
-              label="Imagem da Capa"
-              fullWidth
-              margin="normal"
-              {...register("cover", {
-                required: "Campo obrigatório",
-                pattern: {
-                  value:
-                    /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|bmp|tiff))(?:\?.*)?$/i,
-                  message: "URL da imagem inválida",
-                },
-              })}
-              error={!!errors.cover}
-              helperText={errors.cover?.message}
-              disabled={isSubmitting}
-            />
-          </Box>
+          </Stack>
+          <TextField
+            label="Imagem da Capa"
+            fullWidth
+            margin="normal"
+            {...register("cover", {
+              required: "Campo obrigatório",
+              pattern: {
+                value:
+                  /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|bmp|tiff))(?:\?.*)?$/i,
+                message: "URL da imagem inválida",
+              },
+            })}
+            error={!!errors.cover}
+            helperText={errors.cover?.message}
+            disabled={isSubmitting}
+          />
         </CardContent>
         <CardActions>
           <Button
