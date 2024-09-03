@@ -79,6 +79,14 @@ const CreateBookPage = () => {
               sm: "column",
               md: "row",
             }}
+          ></Stack>
+          <Stack
+            mt={2}
+            spacing={2}
+            direction={{
+              sm: "column",
+              md: "row",
+            }}
           >
             <TextField
               label="Autor"
