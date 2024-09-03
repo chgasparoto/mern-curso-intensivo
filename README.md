@@ -4,7 +4,7 @@ Este repositório contém uma aplicação full-stack desenvolvida usando a stack
 
 ## Links dos cursos
 
-- https://bit.ly/3z1ada5
+- https://bit.ly/3XwDMd7
 - https://bit.ly/3XeY6yl
 
 ![capa do curso](capa.png)
