@@ -2,6 +2,11 @@
 
 Este repositório contém uma aplicação full-stack desenvolvida usando a stack MERN (MongoDB, Express, React, Node.js). O projeto é uma estante de livros que permite cadastrar e gerenciar livros com informações como título, subtítulo, autor, gênero e imagem da capa. A aplicação é projetada para ser responsiva e otimizada para atualizações de estado em tempo real.
 
+## Links dos cursos
+
+- https://bit.ly/3z1ada5
+- https://bit.ly/3XeY6yl
+
 ![capa do curso](capa.png)
 
 ## Tecnologias Utilizadas
@@ -53,7 +58,7 @@ cd mern-curso-intensivo
 
 ```bash
 npm install
-cd client
+cd frontend
 npm install
 cd ..
 ```
@@ -72,11 +77,14 @@ NODE_ENV=development
 
 ```bash
 npm run dev
+cd frontend
+npm run dev
 ```
 
 5. **Execute a Aplicação:**
 
-Abra http://localhost:3000 para ver a aplicação em ação.
+- Abra http://localhost:3000 para ver a aplicação backend em ação.
+- Abra http://localhost:5173 para ver a aplicação frontend em ação.
 
 ## Licença
 
