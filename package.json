@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon backend/server.js",
+    "prebuild": "npm install --include=dev && cd frontend && npm install --include=dev",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "node backend/server.js"
   },
