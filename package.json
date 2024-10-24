@@ -6,11 +6,18 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon backend/server.js",
+    "prebuild": "NODE_ENV=development npm install && npm install --prefix frontend",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "node backend/server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mern",
+    "node",
+    "express",
+    "mongoose",
+    "react"
+  ],
+  "author": "Cleber Gasparoto <clebergasparoto.com>",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5",
